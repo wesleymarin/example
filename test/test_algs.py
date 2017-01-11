@@ -21,7 +21,7 @@ def test_bubblesort():
     # failing, (2) does your code handle characters?
 
     x = np.array([1,2,4,0,1])
-    
+
     # for now, just attempt to call the bubblesort function, should
     # actually check output
     algs.bubblesort(x)
