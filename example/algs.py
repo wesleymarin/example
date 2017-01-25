@@ -24,44 +24,23 @@ def bubblesort(x):
     The following is for a vector of 100-1000 random integers:
         Average time complexity: O(n^2)
     """
-    conditionals = 0
-    assignments = 0
 
     limit = len(x)                  ## Find out how many pairs to check
-    assignments += 1
 
     if limit <= 1:
         return x
-    conditionals += 1
 
     flag = True                    ## Set up flag to know if sequence has any misordered pairs
-    assignments += 1
-
     while flag:
-        conditionals += 1
-
         flag = False
-        assignments += 1
-
         for i in range(0, limit - 1):
             if x[i] > x[i+1]:
                 flag = True             ## Flag True if a misordered pair is found
-                assignments += 1
-
                 dum = x[i]
-                assignments += 1
-
                 x[i] = x[i+1]
-                assignments += 1
-
                 x[i+1] = dum
-                assignments += 1
-
-            conditionals += 1
 
     assert all([x[i] <= x[i+1] for i in range(0,len(x)-1)])
-#    print(assignments)
-#    print(conditionals)
     return x
 
 def quicksort(x):
@@ -74,52 +53,37 @@ def quicksort(x):
     element left per array. This resulting tree of arrays is in the correct order
     and gets combined.
 
+    ** This implementation runs into space problems because of the propogating
+    tree **
+
     The following are for a vector of 100 random integers:
         Conditionals: ~1000
         Assignments: ~900
     The following is for a vector of 100-1000 random integers:
         Average time complexity: O(n*log(n))
     """
-    global conditionals
-    global assignments
-
-    conditionals = 0
-    assignments = 0
-
-
     def partition(x):
-        global conditionals
-        global assignments
 
         if len(x) <= 1:
             return x
-        conditionals += 1
 
-        pivot = x.pop()
-        assignments += 1
+        pivot = x[0]
+        x = x[1:]
 
         over_array = []
-        assignments += 1
-
         under_array = []
-        assignments += 1
 
         for z in x:
             if z < pivot:
                 under_array.append(z)
             else:
                 over_array.append(z)
-            conditionals += 1
-            assignments += 1
 
         return partition(under_array) + [pivot] + partition(over_array)
 
     x = partition(x)
-    assignments += 1
 
     assert all([x[i] <= x[i+1] for i in range(0,len(x)-1)])
-#    print(assignments)
-#    print(conditionals)
     return x
 
 
